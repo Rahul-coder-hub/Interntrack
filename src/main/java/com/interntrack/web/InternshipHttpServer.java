@@ -84,6 +84,8 @@ public class InternshipHttpServer {
 
             if (path.equals("/static/style.css")) {
                 sendCss(exchange);
+            } else if (method.equals("GET") && path.equals("/health")) {
+                send(exchange, 200, "text/plain", "OK");
             } else if (method.equals("GET") && path.equals("/")) {
                 Map<String, String> query = HttpUtil.parseQuery(exchange.getRequestURI().getQuery());
                 sendHtml(exchange, renderer.dashboard(query.getOrDefault("q", "")));
