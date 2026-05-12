@@ -18,11 +18,12 @@ public class App {
 
             JdbcInternRepository repository = new JdbcInternRepository(database);
             InternService service = new InternService(repository);
-            InternshipHttpServer server = new InternshipHttpServer(service, 8080);
+            int port = resolvePort();
+            InternshipHttpServer server = new InternshipHttpServer(service, port);
 
             Files.writeString(
                     Path.of("server-startup.log"),
-                    "InternTrack started successfully on port 8080\n",
+                    "InternTrack started successfully on port " + port + "\n",
                     StandardOpenOption.CREATE,
                     StandardOpenOption.TRUNCATE_EXISTING
             );
@@ -36,6 +37,18 @@ public class App {
                 ex.printStackTrace(writer);
             }
             throw ex;
+        }
+    }
+
+    private static int resolvePort() {
+        String port = System.getenv("PORT");
+        if (port == null || port.isBlank()) {
+            return 8080;
+        }
+        try {
+            return Integer.parseInt(port.trim());
+        } catch (NumberFormatException ex) {
+            return 8080;
         }
     }
 }

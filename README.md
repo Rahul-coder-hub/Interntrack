@@ -69,6 +69,21 @@ http://192.168.1.5:8080
 
 Important: `192.168.x.x` links work only on the same Wi-Fi/LAN. If your friend is in a different place or on mobile data, use a hosting platform or a tunneling tool such as ngrok/Cloudflare Tunnel.
 
+## Deploy Online
+
+Do not deploy this project as a static website. It is a Java server application, so platforms like GitHub Pages or a static Vercel project will show a `404: NOT_FOUND` page.
+
+Recommended deployment:
+
+1. Push this repository to GitHub.
+2. Open [Render](https://render.com).
+3. Create a new `Web Service`.
+4. Connect this GitHub repository.
+5. Render will use the included `Dockerfile` / `render.yaml`.
+6. After deployment, open the public Render URL.
+
+The app reads the `PORT` environment variable automatically for cloud hosting and uses `8080` locally.
+
 ## SQL
 
 The database schema is in:
