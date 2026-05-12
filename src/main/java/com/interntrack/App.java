@@ -13,7 +13,7 @@ import java.nio.file.StandardOpenOption;
 public class App {
     public static void main(String[] args) throws Exception {
         try {
-            Database database = new Database("jdbc:h2:./data/interntrack;MODE=MySQL;DATABASE_TO_UPPER=false");
+            Database database = new Database("jdbc:h2:/app/data/interntrack;MODE=MySQL;DATABASE_TO_UPPER=false");
             database.initialize();
 
             JdbcInternRepository repository = new JdbcInternRepository(database);
