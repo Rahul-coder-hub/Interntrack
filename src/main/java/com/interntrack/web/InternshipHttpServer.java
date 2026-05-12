@@ -115,7 +115,7 @@ public class InternshipHttpServer {
     }
 
     private void sendCss(HttpExchange exchange) throws IOException {
-        String css = Files.readString(Path.of("src", "main", "resources", "static", "style.css"));
+        String css = new String(InternshipHttpServer.class.getResourceAsStream("/static/style.css").readAllBytes(), StandardCharsets.UTF_8);
         send(exchange, 200, "text/css; charset=UTF-8", css);
     }
 

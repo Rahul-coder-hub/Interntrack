@@ -1,6 +1,8 @@
 package com.interntrack.repository;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Connection;
@@ -21,7 +23,7 @@ public class Database {
 
     public void initialize() throws IOException, SQLException {
         Files.createDirectories(Path.of("data"));
-        String schema = Files.readString(Path.of("database", "schema.sql"));
+        String schema = new String(Database.class.getResourceAsStream("/database/schema.sql").readAllBytes(), StandardCharsets.UTF_8);
 
         try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
             for (String sql : schema.split(";")) {
