@@ -22,7 +22,7 @@ public class Database {
     }
 
     public void initialize() throws IOException, SQLException {
-        Files.createDirectories(Path.of("data"));
+        Files.createDirectories(Path.of("/app/data"));
         String schema = new String(Database.class.getResourceAsStream("/database/schema.sql").readAllBytes(), StandardCharsets.UTF_8);
 
         try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
