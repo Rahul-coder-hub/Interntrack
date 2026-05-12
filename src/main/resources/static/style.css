@@ -338,6 +338,11 @@ textarea:focus {
     font-weight: 800;
 }
 
+.status.scheduled {
+    background: #eef2f6;
+    color: #405064;
+}
+
 .status.reviewed {
     background: #e8f4ee;
     color: var(--success);
